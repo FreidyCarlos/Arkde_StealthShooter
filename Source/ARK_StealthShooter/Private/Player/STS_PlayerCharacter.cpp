@@ -24,7 +24,7 @@ void ASTS_PlayerCharacter::MoveRight(float AxisValue)
 {
 	AddMovementInput(GetActorRightVector() * AxisValue);
 }
-
+	
 void ASTS_PlayerCharacter::StartCrouch()
 {
 	Crouch();
