@@ -48,4 +48,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool IsDead() const {return bIsDead; };
+
+	UFUNCTION(BlueprintCallable)
+	void Kill(AController* InstigatedBy, AActor* DamageCauser);
 };

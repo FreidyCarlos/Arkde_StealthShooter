@@ -32,9 +32,34 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	FName WeaponSocketName;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melee")
+	FName MeleeSocketName;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melee")
+	float MeleeAttackRange;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melee")
+	UAnimMontage* MeleeMontage;
+
+	UAnimInstance* AnimInstance;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melee")
+	TArray<TEnumAsByte<EObjectTypeQuery>> MeleeObjectTypes;
+
+protected:
+
+	UPROPERTY(BlueprintReadOnly, Category = "Melee")
+	bool bIsMeleeAttacking;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	UFUNCTION(BlueprintCallable)
+	void StartMelee();
+
+	UFUNCTION(BlueprintCallable)
+	void StopMelee(UAnimMontage* AnimMontage, bool bInterrumped);
 
 public:
 
@@ -43,6 +68,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void StopFire();
+
+	UFUNCTION(BlueprintCallable)
+	void DoMeleeAttack();
 
 	UFUNCTION()
 	void OnHealthChanged(USTS_HealthComponent* HealthComp, float Health, float HealthDelta, const UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);

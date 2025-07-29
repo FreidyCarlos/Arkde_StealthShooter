@@ -43,3 +43,15 @@ void USTS_HealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damag
 		OnDeathDelegate.Broadcast(this, InstigatedBy, DamageCauser);
 	}
 }
+
+void USTS_HealthComponent::Kill(AController* InstigatedBy, AActor* DamageCauser)
+{
+	if (bIsDead)
+	{
+		return;
+	}
+
+	CurrentHealth = 0.0f;
+	bIsDead = true;
+	OnDeathDelegate.Broadcast(this, InstigatedBy, DamageCauser);
+}

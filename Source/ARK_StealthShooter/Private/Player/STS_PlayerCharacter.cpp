@@ -17,12 +17,18 @@ ASTS_PlayerCharacter::ASTS_PlayerCharacter()
 
 void ASTS_PlayerCharacter::MoveFoward(float AxisValue)
 {
-	AddMovementInput(GetActorForwardVector() * AxisValue);
+	if (!bIsMeleeAttacking)
+	{
+		AddMovementInput(GetActorForwardVector() * AxisValue);
+	}
 }
 
 void ASTS_PlayerCharacter::MoveRight(float AxisValue)
 {
-	AddMovementInput(GetActorRightVector() * AxisValue);
+	if (!bIsMeleeAttacking)
+	{
+		AddMovementInput(GetActorRightVector() * AxisValue);
+	}
 }
 	
 void ASTS_PlayerCharacter::StartCrouch()
@@ -50,6 +56,8 @@ void ASTS_PlayerCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASTS_PlayerCharacter::StartFire);
 	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ASTS_PlayerCharacter::StopFire);
+
+	PlayerInputComponent->BindAction("Melee", IE_Pressed, this, &ASTS_PlayerCharacter::	StartMelee);
 }
 
 FVector ASTS_PlayerCharacter::GetPawnViewLocation() const
