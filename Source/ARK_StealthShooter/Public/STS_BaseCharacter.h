@@ -72,6 +72,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void DoMeleeAttack();
 
+	void Jump();
+
+	void StopJumping();
+
 	UFUNCTION()
 	void OnHealthChanged(USTS_HealthComponent* HealthComp, float Health, float HealthDelta, const UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 

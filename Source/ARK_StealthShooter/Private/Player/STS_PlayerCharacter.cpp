@@ -58,6 +58,8 @@ void ASTS_PlayerCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ASTS_PlayerCharacter::StopFire);
 
 	PlayerInputComponent->BindAction("Melee", IE_Pressed, this, &ASTS_PlayerCharacter::	StartMelee);
+
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASTS_PlayerCharacter::Jump);
 }
 
 FVector ASTS_PlayerCharacter::GetPawnViewLocation() const

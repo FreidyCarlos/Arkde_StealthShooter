@@ -112,6 +112,16 @@ void ASTS_BaseCharacter::DoMeleeAttack()
 	}
 }
 
+void ASTS_BaseCharacter::Jump()
+{
+	Super::Jump();
+}
+
+void ASTS_BaseCharacter::StopJumping()
+{
+	Super::StopJumping();
+}
+
 void ASTS_BaseCharacter::OnHealthChanged(USTS_HealthComponent* HealthComp, float Health, float HealthDelta, const UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
 
