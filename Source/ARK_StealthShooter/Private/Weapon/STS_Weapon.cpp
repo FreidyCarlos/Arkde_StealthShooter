@@ -56,7 +56,7 @@ void ASTS_Weapon::Fire()
 		if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, WEAPON_COLLISION, QueryParams))
 		{
 			AActor* HitActor = Hit.GetActor();
-			UGameplayStatics::ApplyDamage(HitActor, ShotDamage, MyOwner->GetInstigatorController(), MyOwner, DamageType);
+			UGameplayStatics::ApplyPointDamage(HitActor, ShotDamage, ShotDirection, Hit, MyOwner->GetInstigatorController(), MyOwner, DamageType);
 
 			if (ImpactEffect)
 			{
