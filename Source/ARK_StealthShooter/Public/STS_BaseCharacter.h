@@ -18,6 +18,9 @@ public:
 	// Sets default values for this character's properties
 	ASTS_BaseCharacter();
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Health Component")
+	USTS_HealthComponent* HealthComponent;
+
 protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
@@ -25,9 +28,6 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Weapon")
 	ASTS_Weapon* CurrentWeapon;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Health Component")
-	USTS_HealthComponent* HealthComponent;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	FName WeaponSocketName;

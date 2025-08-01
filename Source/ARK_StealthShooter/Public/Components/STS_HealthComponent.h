@@ -51,4 +51,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void Kill(AController* InstigatedBy, AActor* DamageCauser);
+
+	UFUNCTION(BlueprintCallable)
+	void Heal(const float HealAmaunt, AController* InstigatedBy, AActor* DamageCauser);
 };
