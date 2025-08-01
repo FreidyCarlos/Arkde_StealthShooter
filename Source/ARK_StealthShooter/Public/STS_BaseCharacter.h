@@ -8,6 +8,7 @@
 
 class ASTS_Weapon;
 class USTS_HealthComponent;
+class UPawnNoiseEmitterComponent;
 
 UCLASS()
 class ARK_STEALTHSHOOTER_API ASTS_BaseCharacter : public ACharacter
@@ -20,6 +21,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Health Component")
 	USTS_HealthComponent* HealthComponent;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Noise Component")
+	UPawnNoiseEmitterComponent* CharacterNoiseEmitter;
 
 protected:
 
@@ -81,4 +85,7 @@ public:
 
 	UFUNCTION()
 	void OnDeath(USTS_HealthComponent* HealthComp, class AController* InstigatedBy, AActor* Killer);
+
+	UFUNCTION()
+	void CharacterMakeNoise(const float Loudness, const FVector NoiseLocation);
 };

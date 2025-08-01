@@ -7,6 +7,7 @@
 #include "Components/STS_HealthComponent.h"
 #include "Animation/AnimMontage.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Components/PawnNoiseEmitterComponent.h"
 
 // Sets default values
 ASTS_BaseCharacter::ASTS_BaseCharacter()
@@ -15,6 +16,9 @@ ASTS_BaseCharacter::ASTS_BaseCharacter()
 	PrimaryActorTick.bCanEverTick = false;
 
 	HealthComponent = CreateDefaultSubobject<USTS_HealthComponent>(TEXT("HealthComponent"));
+
+	CharacterNoiseEmitter = CreateDefaultSubobject<UPawnNoiseEmitterComponent>(TEXT("CharacterNoiseEmitter"));
+	CharacterNoiseEmitter->SetAutoActivate(true);
 
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true;
 
@@ -134,4 +138,12 @@ void ASTS_BaseCharacter::OnDeath(USTS_HealthComponent* HealthComp, class AContro
 	this->SetActorEnableCollision(false);
 	HealthComponent->OnHealthChangedDelegate.RemoveDynamic(this, &ASTS_BaseCharacter::OnHealthChanged);
 	HealthComponent->OnDeathDelegate.RemoveDynamic(this, &ASTS_BaseCharacter::OnDeath);
+}
+
+void ASTS_BaseCharacter::CharacterMakeNoise(const float Loudness, const FVector NoiseLocation)
+{
+	if (IsValid(CharacterNoiseEmitter))
+	{
+		CharacterNoiseEmitter->MakeNoise(this, Loudness, NoiseLocation);
+	}
 }

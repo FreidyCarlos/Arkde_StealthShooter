@@ -8,6 +8,7 @@
 
 class UStaticMeshComponent;
 class UParticleSystem;
+class USoundBase;
 
 UCLASS()
 class ARK_STEALTHSHOOTER_API ASTS_Weapon : public AActor
@@ -37,6 +38,15 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Effects")
 	FName TracerTargetName;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundBase* ShotSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	float ShotLoudness;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	float ShotVolume;
 
 protected:
 
