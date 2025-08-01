@@ -66,3 +66,21 @@ void USTS_HealthComponent::Heal(const float HealAmaunt, AController* InstigatedB
 	CurrentHealth = FMath::Clamp(CurrentHealth + HealAmaunt, 0.0f, DefaultHealth);
 	OnHealthChangedDelegate.Broadcast(this, CurrentHealth, -HealAmaunt, nullptr, InstigatedBy, DamageCauser);
 }
+
+bool USTS_HealthComponent::bIsFriendly(const AActor* ActorA, const AActor* ActorB)
+{
+	if (ActorA == nullptr || ActorB == nullptr)
+	{
+		return true;
+	}
+
+	USTS_HealthComponent* HealthCompA = ActorA->FindComponentByClass<USTS_HealthComponent>();
+	USTS_HealthComponent* HealthCompB = ActorB->FindComponentByClass<USTS_HealthComponent>();
+
+	if (HealthCompA == nullptr || HealthCompB == nullptr)
+	{
+		return true;
+	}
+
+	return HealthCompA->TeamNumber == HealthCompB->TeamNumber;
+}

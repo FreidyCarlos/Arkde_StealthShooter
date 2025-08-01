@@ -18,6 +18,9 @@ public:
 	// Sets default values for this component's properties
 	USTS_HealthComponent();
 
+	UPROPERTY(EditDefaultsOnly)
+	uint8 TeamNumber;
+
 protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Health")
@@ -54,4 +57,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void Heal(const float HealAmaunt, AController* InstigatedBy, AActor* DamageCauser);
+
+	UFUNCTION()
+	static bool bIsFriendly(const AActor* ActorA, const AActor* ActorB);
 };
